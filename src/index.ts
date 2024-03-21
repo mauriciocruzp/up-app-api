@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import { Signale } from 'signale';
 import morgan from 'morgan';
 import { eventManagementRouter } from "./event-management/infrastructure/routes/event.router";
-import { documentManagementRouter } from "./document-management/infrastruture/routes/document.router";
+import { documentManagementRouter } from "./document-management/infrastructure/routes/document.router";
 import syncConnection from "./mysql/connection";
 import { } from '../tsconfig.json';
 
