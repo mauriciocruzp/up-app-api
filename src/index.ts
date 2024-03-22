@@ -6,6 +6,8 @@ import { eventManagementRouter } from "./event-management/infrastructure/routes/
 import { documentManagementRouter } from "./document-management/infrastructure/routes/document.router";
 import syncConnection from "./mysql/connection";
 import { } from '../tsconfig.json';
+import cors from 'cors';
+
 
 export const app = express();
 const logger = new Signale();
@@ -15,6 +17,9 @@ app.use(express.json());
 app.use(morgan('dev'));
 const PORT = process.env.PORT || 3000;
 const API_PREFIX = process.env.API_PREFIX || '/api/v1';
+
+app.options('*', cors())
+app.use(cors())
 
 app.use(`${API_PREFIX}/events`, eventManagementRouter);
 app.use(`${API_PREFIX}/documents`, documentManagementRouter);
