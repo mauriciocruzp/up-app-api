@@ -10,8 +10,8 @@ COPY . .
 
 RUN npm install
 
-RUN npm run build
+RUN npm run build && npm prune --production
 
 EXPOSE 3001
 
-CMD [ "node", "dist/src/index.js" ]
+CMD [ "dumb-init", "node", "dist/src/index.js" ]
