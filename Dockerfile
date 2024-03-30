@@ -1,12 +1,15 @@
 FROM node:20.9.0
 
-WORKDIR /app
+RUN mkdir -p /usr/src/app
+
+WORKDIR /usr/src/app
+
+COPY package.json ./
+
+RUN npm install
 
 COPY . .
 
-RUN npm install
-RUN npm install -g ts-node
-
 EXPOSE 3001
 
-CMD [ "ts-node", "src/index.ts" ]
+CMD [ "npm", "run", "start" ]
