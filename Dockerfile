@@ -14,4 +14,4 @@ RUN npm run build && npm prune --production
 
 EXPOSE 3001
 
-CMD [ "dumb-init", "node", "dist/src/index.js" ]
+CMD [ "node", "dist/src/index.js" ]
