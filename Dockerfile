@@ -1,16 +1,17 @@
-FROM node:20.9.0
+FROM node:20.12-alpine
 
 RUN mkdir -p /usr/src/app
 
+RUN apk update && apk add --no-cache dumb-init
+
 WORKDIR /usr/src/app
 
-RUN npm install -g ts-node
-
-COPY package.json ./
 COPY . .
 
 RUN npm install
 
+RUN npm run build && npm prune --production
+
 EXPOSE 3001
 
-CMD [ "npm", "run", "start" ]
+CMD [ "dumb-init", "node", "dist/src/index.js" ]
