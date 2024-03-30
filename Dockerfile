@@ -4,12 +4,12 @@ RUN mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
 
-COPY package.json ./
-
-RUN npm install
 RUN npm install -g ts-node
 
+COPY package.json ./
 COPY . .
+
+RUN npm install
 
 EXPOSE 3001
 
