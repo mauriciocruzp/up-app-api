@@ -6,4 +6,4 @@ coverage/
 .npm
 .vscode
 .nyc_output
-package-lock.json
+.env

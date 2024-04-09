@@ -1,6 +1,6 @@
 import { DocumentEntity } from "../../domain/entities/document.entity";
 import { DocumentInterface } from "../../domain/interfaces/document.interface";
-import DocumentModel from "../../../mysql/models/document.model";
+import DocumentModel from "../../../database/mysql/models/document.model";
 import signale from "signale";
 
 export class MysqlDocumentRepository implements DocumentInterface {
