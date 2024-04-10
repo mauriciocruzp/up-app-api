@@ -6,4 +6,5 @@ export interface UserInterface {
     getUsers(): Promise<UserEntity[]>;
     updateUser(user: UserEntity): Promise<UserEntity | null>;
     deleteUser(id: string): Promise<boolean>;
+    getByEmail(email: string): Promise<UserEntity | null>;
 }

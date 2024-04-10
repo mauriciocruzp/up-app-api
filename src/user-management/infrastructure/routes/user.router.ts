@@ -1,5 +1,5 @@
 import express from "express";
-import { userController } from "../user.dependencies";
+import { authController, userController } from "../user.dependencies";
 
 export const userManagementRouter = express.Router();
 
@@ -9,4 +9,4 @@ userManagementRouter.get('/', userController.getUsers.bind(userController));
 userManagementRouter.put('/:id', userController.updateUser.bind(userController));
 userManagementRouter.delete('/:id', userController.deleteUser.bind(userController));
 userManagementRouter.post('/register', userController.createUser.bind(userController));
-userManagementRouter.post('/login', userController.authenticateUser.bind(userController));
+userManagementRouter.post('/auth', authController.authenticateUser.bind(authController));
