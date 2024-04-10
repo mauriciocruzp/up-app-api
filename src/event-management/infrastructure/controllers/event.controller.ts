@@ -14,7 +14,7 @@ export class EventController {
         const event = await this.createEventUseCase.execute(title, description, date, location, image);
 
         if (!event) {
-            return res.status(400).json({ message: "Failed to create event" });
+            return res.status(500).json({ message: "Failed to create event" });
         }
         return res.status(201).json({ message: "Event created successfully!", event });
     }
@@ -24,7 +24,7 @@ export class EventController {
         const event = await this.getEventUseCase.execute(id);
 
         if (!event) {
-            return res.status(400).json({ message: "Failed to get event" });
+            return res.status(500).json({ message: "Failed to get event" });
         }
         return res.status(200).json({ message: "Event retrieved successfully!", event });
     }
@@ -33,7 +33,7 @@ export class EventController {
         const events = await this.getEventsUseCase.execute();
 
         if (!events) {
-            return res.status(400).json({ message: "Failed to get events" });
+            return res.status(500).json({ message: "Failed to get events" });
         }
         return res.status(200).json({ message: "Events retrieved successfully!", events });
     }
@@ -44,7 +44,7 @@ export class EventController {
         const event = await this.updateEventUseCase.execute(id, title, description, date, location, image);
 
         if (!event) {
-            return res.status(400).json({ message: "Failed to update event" });
+            return res.status(500).json({ message: "Failed to update event" });
         }
         return res.status(200).json({ message: "Event updated successfully!", event });
     }
@@ -54,7 +54,7 @@ export class EventController {
         const event = await this.deleteEventUseCase.execute(id);
 
         if (!event) {
-            return res.status(400).json({ message: "Failed to delete event" });
+            return res.status(500).json({ message: "Failed to delete event" });
         }
         return res.status(200).json({ message: "Event deleted successfully!" });
     }
