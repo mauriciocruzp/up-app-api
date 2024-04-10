@@ -1,41 +1,30 @@
 import { NextFunction, Request, Response } from "express";
-import passport from "passport";
-import "../auth/passportHandler";
+import { GetUserByEmailUseCase } from "../../application/use-cases/get-user-by-email.use-case";
+import { BcryptUtils } from "../utils/bcrypt.utils";
+import { omit } from 'lodash';
+import { createToken } from "../utils/jwt.utils";
 
 
 export class AuthController {
-  public authenticateJWT(req: Request, res: Response, next: NextFunction) {
-    passport.authenticate("jwt", function (err: any, user: any, info: any) {
-      if (err) {
-        console.log(err);
-        return res.status(401).json({ status: "error", code: "unauthorized" });
-      }
-      if (!user) {
-        return res.status(401).json({ status: "error", code: "unauthorized" });
-      } else {
-        return next();
-      }
-    })(req, res, next);
-  }
+  constructor(readonly getUserByIdUseCase: GetUserByEmailUseCase) {}
 
-  public authorizeJWT(req: Request, res: Response, next: NextFunction) {
-    passport.authenticate("jwt", function (err: any, user: any, jwtToken: { scope: any; }) {
-      if (err) {
-        console.log(err);
-        return res.status(401).json({ status: "error", code: "unauthorized" });
-      }
-      if (!user) {
-        return res.status(401).json({ status: "error", code: "unauthorized" });
-      } else {
-        const scope = req.baseUrl.split("/").slice(-1)[0];
-        const authScope = jwtToken.scope;
-        if (authScope && authScope.indexOf(scope) > -1) {
-          return next();
-        }
-        else {
-          return res.status(401).json({ status: "error", code: "unauthorized" });
-        }
-      }
-    })(req, res, next);
+  public async authenticateUser(req: Request, res: Response, next: NextFunction) {
+    const { email, password } = req.body;
+
+    const user = await this.getUserByIdUseCase.execute(email);
+
+    if (!user) return res.status(401).send();
+
+    const isValidPassword = BcryptUtils.compare(password, user.password)
+
+    if (!isValidPassword) return res.status(401).send();
+
+    const userPayload = omit(user, [
+      'password',
+    ]);
+
+    const token = await createToken(userPayload);
+
+    return res.status(201).send(token);
   }
 }

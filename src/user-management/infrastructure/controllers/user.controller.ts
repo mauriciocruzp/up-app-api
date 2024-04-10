@@ -23,7 +23,7 @@ export class UserController {
             return res.status(500).json({ message: "Failed to create user" });
         }
         console.log(req.body.scope)
-        const token = jwt.sign({ email: email }, JWT_SECRET);
+        const token = jwt.sign({ user: user }, JWT_SECRET, { expiresIn: "2d" });
         return res.status(201).json({ message: "User created successfully!", token: token });
     }
 

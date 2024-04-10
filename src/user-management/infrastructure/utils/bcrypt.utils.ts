@@ -12,8 +12,8 @@ export class BcryptUtils {
     }
 
     public static async compare(password: string, hash: string): Promise<boolean> {
-        const key = process.env.CRYPTO_KEY || '1234567891234567';
-        const decryptedPassword = CryptoJS.AES.decrypt(hash, key).toString(CryptoJS.enc.Utf8);
-        return bcrypt.compareSync(password, decryptedPassword);
+        let result = false;
+        bcrypt.compare(password, hash, (err, res) => { result = res; });
+        return result;
     }
 }

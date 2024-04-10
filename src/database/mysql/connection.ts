@@ -11,8 +11,7 @@ const sequelize = new Sequelize({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     port: parseInt(process.env.DB_PORT as string) || 3306,
-    models: [__dirname + '/**/*.model.ts'],
-    logging: false
+    models: [__dirname + '/**/*.model.ts']
 })
 
 const syncConnection = async () => {

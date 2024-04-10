@@ -93,4 +93,17 @@ export class MysqlUserRepository implements UserInterface {
         }
         return user;
     }
+
+    async getByEmail(email: string): Promise<UserEntity | null> {
+        try {
+            const user = await UserModel.findOne({ where: { email } });
+            if (!user) {
+                return null;
+            }
+            return user;
+        } catch (error) {
+            signale.error(error);
+            return null;
+        }
+    }
 }
