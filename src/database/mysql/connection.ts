@@ -11,13 +11,14 @@ const sequelize = new Sequelize({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     port: parseInt(process.env.DB_PORT as string) || 3306,
-    models: [__dirname + '/**/*.model.ts']
+    models: [__dirname + '/**/*.model.ts'],
+    logging: false
 })
 
 const syncConnection = async () => {
     try {
         await sequelize.sync();
-            signale.success('Models synchronized successfully');
+        signale.success('Models synchronized successfully');
     } catch (error) {
         signale.error(error);
     }

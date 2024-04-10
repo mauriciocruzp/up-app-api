@@ -1,6 +1,6 @@
 import { EventEntity } from "../../domain/entities/event.entity";
 import { EventInterface } from "../../domain/interfaces/event.interface";
-import EventModel from "../../../mysql/models/event.model";
+import EventModel from "../../../database/mysql/models/event.model";
 import signale from "signale";
 
 export class MysqlEventRepository implements EventInterface {
