@@ -1,16 +1,16 @@
-FROM node:20.12-alpine
+FROM node:21.7.2-alpine
 
-RUN mkdir -p /usr/src/app
+RUN mkdir /app
+
+WORKDIR /app
 
 RUN apk update && apk add --no-cache dumb-init
-
-WORKDIR /usr/src/app
 
 COPY . .
 
 RUN npm install
 
-RUN npm run build && npm prune --production
+RUN npm run build
 
 EXPOSE 3001
 

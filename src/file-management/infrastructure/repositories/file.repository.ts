@@ -33,7 +33,6 @@ export class FileRepository {
 
             await this.s3Client.send(new PutObjectCommand(uploadParams));
             const object = await this.s3Client.send(new GetObjectCommand(uploadParams));
-            console.log(object);
 
             const url = `https://${BUCKET_NAME}.s3.amazonaws.com/${file.originalname}`;
             return url || "error";

@@ -1,4 +1,3 @@
-import passport from "passport";
 import * as jwt from "jsonwebtoken";
 import { CreateUserUseCase } from "../../application/use-cases/create-user.use-case";
 import { DeleteUserUseCase } from "../../application/use-cases/delete-user.use-case";
@@ -66,14 +65,5 @@ export class UserController {
             return res.status(500).json({ message: "Failed to delete user" });
         }
         return res.status(200).json({ message: "User deleted successfully!" });
-    }
-
-    public authenticateUser(req: Request, res: Response, next: NextFunction) {
-        const JWT_SECRET = process.env.JWT_SECRET || "secret";
-        console.log(req.body)
-        passport.authenticate("local", function (req: any, res: any) {
-            const token = jwt.sign({ email: req.body.email }, JWT_SECRET);
-            res.status(200).send({ token: token });
-        });
     }
 }

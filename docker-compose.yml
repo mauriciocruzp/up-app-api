@@ -7,15 +7,3 @@ services:
     build: .
     ports:
       - "3001:3001"
-    links:
-      - database
-    volumes:
-      - .:/usr/src/app
-  database:
-    container_name: database
-    image: mysql
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: "root"
-      MYSQL_DATABASE: "up_app_db"
