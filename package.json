@@ -2,8 +2,7 @@
   "name": "up-app-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
+  "main": "src/index.ts",
   "scripts": {
     "test": "jest",
     "start": "node dist/src/index.js",
