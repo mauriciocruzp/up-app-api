@@ -9,7 +9,7 @@ import { commentRouter } from "./event-management/infrastructure/routes/comment.
 import syncConnection from "./database/mysql/connection";
 import { } from '../tsconfig.json';
 import cors from 'cors';
-import { cloudinaryManagementRouter } from "./cloudinary-management/infrastructure/routes/cloudinary.router";
+import { cloudinaryManagementRouter } from "./file-management/infrastructure/routes/file.router";
 import busboy from 'connect-busboy';
 import compression from "compression";
 
