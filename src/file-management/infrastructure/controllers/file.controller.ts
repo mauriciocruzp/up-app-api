@@ -11,6 +11,6 @@ export class FileController {
         if (!result) {
             return res.status(400).json({ message: "Failed to upload file" });
         }
-        return res.status(200).json({ message: "File uploaded successfully!" });
+        return res.status(200).json({ message: "File uploaded successfully!", url: result });
     }
 }
