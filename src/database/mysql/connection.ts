@@ -12,7 +12,7 @@ const syncConnection = async () => {
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
         port: 3306,
-        models: [__dirname + '/**/*.model.ts'],
+        models: [__dirname + '/**/**/*.model.ts'],
     })
     try {
         await sequelize.sync();
