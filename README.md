@@ -1,7 +1,7 @@
 
 # UP App Hexagonal API
 
-This an API developed on Typescript for for an educational information platform. 
+This an API developed on Typescript for an educational information platform. 
 
 
 ## Environment Variables
