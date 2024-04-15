@@ -3,6 +3,7 @@ import { GetUserByEmailUseCase } from "../../application/use-cases/get-user-by-e
 import { BcryptUtils } from "../utils/bcrypt.utils";
 import { omit } from 'lodash';
 import { createToken } from "../utils/jwt.utils";
+import * as jwt from "jsonwebtoken";
 
 
 export class AuthController {
@@ -26,5 +27,17 @@ export class AuthController {
     const token = await createToken(userPayload);
 
     return res.status(201).send(token);
+  }
+
+  public async validateToken(req: Request, res: Response, next: NextFunction) {
+    const JWT_SECRET = process.env.JWT_SECRET || "secret";
+
+    try {
+      const decodedToken = jwt.verify(req.body.token, JWT_SECRET);
+      console.log(decodedToken);
+      return res.status(200).send();
+    } catch (error) {
+      return res.status(404).send();
+    }
   }
 }
