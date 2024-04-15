@@ -30,7 +30,7 @@ export default class EventModel extends Model implements EventAttributes {
 
     @Column({
         allowNull: false,
-        type: DataType.STRING,
+        type: DataType.TEXT('long'),
     })
     declare description: string;
 

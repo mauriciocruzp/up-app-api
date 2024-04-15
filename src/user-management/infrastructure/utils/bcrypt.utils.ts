@@ -12,8 +12,10 @@ export class BcryptUtils {
     }
 
     public static async compare(password: string, hash: string): Promise<boolean> {
-        let result = false;
-        bcrypt.compare(password, hash, (err, res) => { result = res; });
-        return result;
+        const decrypted = CryptoJS.AES.decrypt(hash, process.env.CRYPTO_KEY || '1234567891234567').toString(CryptoJS.enc.Utf8);
+        if (decrypted === password) {
+            return true;
+        }
+        return false;
     }
 }

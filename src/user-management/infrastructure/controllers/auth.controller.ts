@@ -17,7 +17,7 @@ export class AuthController {
 
     const isValidPassword = BcryptUtils.compare(password, user.password)
 
-    if (!isValidPassword) return res.status(401).send();
+    if (await isValidPassword == false) return res.status(401).send();
 
     const userPayload = omit(user, [
       'password',
