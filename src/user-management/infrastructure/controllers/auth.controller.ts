@@ -34,7 +34,6 @@ export class AuthController {
 
     try {
       const decodedToken = jwt.verify(req.body.token, JWT_SECRET);
-      console.log(decodedToken);
       return res.status(200).send();
     } catch (error) {
       return res.status(404).send();
